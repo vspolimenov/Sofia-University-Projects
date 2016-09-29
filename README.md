@@ -1,3 +1,3 @@
 # Sofia-Univerity-Projects
 
-Here are my project from university
+Here are my projects from university
