@@ -1,0 +1,6 @@
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\bin\Debug\PractucumOOPProject.exe.config
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\bin\Debug\PractucumOOPProject.exe
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\bin\Debug\PractucumOOPProject.pdb
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\obj\Debug\PractucumOOPProject.csprojResolveAssemblyReference.cache
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\obj\Debug\PractucumOOPProject.exe
+c:\users\ме\documents\visual studio 2015\Projects\PractucumOOPProject\PractucumOOPProject\obj\Debug\PractucumOOPProject.pdb
