@@ -17,10 +17,6 @@ namespace PractucumOOPProject
 
             GameManager.DisplayMenu();
 
-
-
-
-
             int userInput = int.Parse(Console.ReadLine());
 
             if (userInput == 1)
@@ -34,7 +30,6 @@ namespace PractucumOOPProject
                 GameManager.DisplayTerrain(currentTerrain);
                 do
                 {
-
                     firstPlayer.GenerateMovements(currentTerrain);
                     secondPlayer.GenerateMovements(currentTerrain);
                     GameManager.DisplayTerrain(currentTerrain);
@@ -58,7 +53,6 @@ namespace PractucumOOPProject
                 GameManager.DisplayTerrain(currentTerrain);
                 do
                 {
-
                     firstPlayer.GenerateMovements(currentTerrain);
                     thirdPlayer.GenerateMovements(currentTerrain);
                     GameManager.DisplayTerrain(currentTerrain);
@@ -82,11 +76,10 @@ namespace PractucumOOPProject
                 int sizeOfTheTerrain = int.Parse(Console.ReadLine());
                 Terrain currentTerrain = new Terrain(sizeOfTheTerrain);
                 GameManager.GeneratePlayersInTheTerrain(firstPlayer, newPlayer, currentTerrain);
-
+                
                 GameManager.DisplayTerrain(currentTerrain);
                 do
                 {
-
                     firstPlayer.GenerateMovements(currentTerrain);
                     newPlayer.GenerateMovements(currentTerrain);
                     GameManager.DisplayTerrain(currentTerrain);
@@ -99,7 +92,6 @@ namespace PractucumOOPProject
                     }
                 }
                 while (currentTerrain.IsFull == false);
-
             }
         }
     }
