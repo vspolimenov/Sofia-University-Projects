@@ -25,8 +25,14 @@ namespace PractucumOOPProject
 
             if (userInput == 1)
             {
-                Console.WriteLine("\t\t Enter the size of the terrain");
+                Console.WriteLine("\t\t Enter the size of the terrain. Must be > 2!");
                 int sizeOfTheTerrain = int.Parse(Console.ReadLine());
+                while (sizeOfTheTerrain <= 2)
+                {
+                    Console.WriteLine("\t\t Enter the size of the terrain. Must be > 2!");
+                    sizeOfTheTerrain = int.Parse(Console.ReadLine());
+                }
+
                 Terrain currentTerrain = new Terrain(sizeOfTheTerrain);
                 GameManager.GeneratePlayersInTheTerrain(firstPlayer, secondPlayer, currentTerrain);
 
