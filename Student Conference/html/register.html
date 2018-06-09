@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student conference Register</title>
+    <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link href="css/style.css" rel="stylesheet"></link>
+
+    <script type="text/javascript">
+
+        is_authenticated();
+
+        function is_authenticated() {
+            $.ajax({
+                url: 'php/authenticate.php',
+                type: "GET",
+                statusCode: {
+                    200: function () {
+                        window.location.replace("index.html");
+                    }
+                }
+            });
+        }
+
+        function register() {
+            var username = $("#userName")[0].value;
+            var password = $("#pwd")[0].value;
+            var email = $("#email")[0].value;
+
+            if (!isPasswordValid(password)) {
+                return;
+            }
+
+            var data = {
+                username: username,
+                password: password,
+                email: email
+            }
+
+
+            $.ajax({
+                url: './php/register.php',
+                type: "POST",
+                data: data,
+                statusCode: {
+                    401: function (data) {
+                        alert("Registration failed. Dublicated names or wrong email.");
+                        $("#reset").trigger("click");
+                    },
+                    200: function () {
+                        window.location.replace("index.html");
+                    }
+                }
+            });
+
+        }
+
+        function isPasswordValid(password) {
+            var confirmPassword = $("#conf_pwd")[0].value;
+
+            if (password == "" || confirmPassword == "") {
+                alert("All fields are required");
+                return false;
+            }
+
+            if (password != confirmPassword) {
+                alert("The passwords dont match");
+                return false;
+            }
+            return true;
+        }
+
+        function go_to_login() {
+            window.location.replace("login.html");
+        }
+    </script>
+
+</head>
+<body>
+<div align="center">
+    <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" align="center"
+             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <input type="text" class="form-control" id="userName" value="" placeholder="Username">
+            <input type="password" class="form-control" id="pwd" value="" placeholder="Password">
+            <input type="password" class="form-control" id="conf_pwd" value="" placeholder="Confirm password">
+            <input type="email" class="form-control" id="email" value="" placeholder="Email">
+            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="register()">Register</button>
+            <button type="reset" class="btn btn-lg btn-warning btn-block btn-signin" id="reset">Reset</button>
+        </form>
+        <a class="log-in" onclick="go_to_login()">
+            Log in
+        </a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,317 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background: #d3d3d3;
+}
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.headerCreateConf {
+     font-family: "Great Vibes", cursive; 
+          text-shadow: 0 1px 1px #fff;
+          font-size: 50px;
+            padding-left: 300px;
+ }
+ .headerCommentConf {
+    font-family: "Great Vibes", cursive; 
+         text-shadow: 0 1px 1px #fff;
+         font-size: 30px;
+         padding-right: 500px;
+      
+
+}
+.commentCreateConf {
+    font-family: "Great Vibes", cursive; 
+         text-shadow: 0 1px 1px #fff;
+         font-size: 20px;
+         padding-right: 500px;
+         padding-left: 500px;
+     
+}
+.comment {
+    padding-bottom: 50px;
+}
+.form-singin {
+    display: block;
+    margin-top: 0em;
+}
+.form{
+    background:#111;
+       max-width: 220px;
+	   text-align:center;
+	   position:fixed;
+	   left:0px;
+	   top:220px;
+       color:#F5F5F5;
+       border: #f1f1f1;
+       padding: 15px;
+       z-index: 1;
+       opacity: 0.5;
+}
+
+.form:hover{
+    background:#111;
+       min-width: 500px;
+	   left:0px;
+	   top:220px;
+       border-radius: 30px;
+       padding-left: 200px;
+       opacity: 1;
+}
+#conferenceA  {
+    color:white;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: right;
+}
+.center{
+	margin-left:250px;
+}
+.centerHeader{
+	padding-left:550px;
+}
+.btn {
+    font-weight: 700;
+    height: 36px;
+	width:inherit;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btn.btn-signin {
+    background-color: #4d90fe;
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+/*
+ * Form styles
+ */
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+   background-color: #4d90fe;
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+.headerColor {
+	top:0px;
+	position:fixed;
+	overflow: hidden;
+	background-color: #f1f1f1;
+	height: 150px;
+    width: 100%;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #F5F5F5;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #B0B0B0;
+}
+input[type=text] {
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding-left: 40px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+.forgot-password {
+    color: rgb(104, 145, 162);
+}
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus{
+    color: rgb(12, 97, 33);
+}
+.table{
+padding:50px;
+z-index: 1;
+}
+th {
+   border: 1px solid black;
+}
+.tableZIndex {
+    z-index: 1;
+}
+
+#conferences {
+	margin-top:100px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    z-index: 1;
+}
+
+#conferences td, #conferences th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#conferences tr:nth-child(even){background-color: #f1f1f1;}
+
+#conferences tr:hover {background-color: #ddd;}
+
+#conferences th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #686868;
+    color: #F5F5F5;
+}
+
+.textarea {
+    width: 340px;
+    height: 100px;
+  }

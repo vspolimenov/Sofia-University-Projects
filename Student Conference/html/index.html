@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student conferences</title>
+    <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link href="css/style.css" rel="stylesheet"></link>
+    <link href="css/headerCss.css" rel="stylesheet"></link>
+    <script type="text/javascript">
+
+        is_authenticated();
+
+        function is_authenticated() {
+            $.ajax({
+                url: 'php/authenticate.php',
+                type: "GET",
+                statusCode: {
+                    401: function () {
+                        window.location.replace("login.html");
+                    }
+                }
+            });
+        }
+
+        function log_out() {
+            $.ajax({
+                url: 'php/logout.php',
+                type: "POST"
+            });
+        }
+
+        $(document).ready(function () {
+           // $("#conference").hide();
+
+
+            drawTableWithBooks();
+
+        });
+
+        function drawTableWithBooks() {
+            $.ajax({
+                url: 'php/all_conferences.php',
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    renderTable(data);
+                }
+            });
+
+        }
+
+        function renderTable(data, fileExists) {
+            console.log(data);
+            for (var i = 0; i < data.length; ++i) {
+                console.log(data[i]);
+                render_row(data[i]);
+            }
+        }
+
+        function render_row(row_info) {
+            var row = $("<tr></tr>");
+            $("#conferences").append(row);
+            row.append($("<td align='center'> <img src='php/uploads/" + row_info.name + ".jpg' alt='No Image' height='42' width='42'><img</td>"));
+            row.append($("<td align='center'>" + row_info.name + "</td>"));
+            row.append($("<td align='center'>" + row_info.place + "</td>"));
+            row.append($("<td align='center'>" + row_info.time + "</td>"));
+            row.append($("<td align='center'>" + row_info.date + "</td>"));
+            row.append($("<td align='center'>" + row_info.description + "</td>"));
+
+            var button = "<button type=button onclick=show_info(" + row_info.id + ")>Open</button>";
+            row.append($("<td>" + button + "</td>"));
+        }
+
+        function show_info(id) {
+            document.getElementById("conference").hidden=false;
+            $("#conference_info_button").attr("onclick", "send_conference_info(" + id + ")");
+
+            $.ajax({
+                url: 'php/conference_info.php?conference_id=' + id,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    render_info(data, id);
+                }
+            });
+        }
+
+        function render_info(data, id) {
+            $("#conference_info").append("<h1 align='center' class='headerCommentConf'>Conference</h1><br>");
+            for (var i = 0; i < data.length; ++i) {
+                console.log(data[i]);
+                render_li(data[i], id);
+            }
+
+        }
+
+        function render_li(li_data, id) {
+            var li = $("<li class='comment'>On:" + li_data.date +
+                ":<br>" + li_data.comment + "</li>");
+
+
+            $("#conference_info").append(li);
+
+            if (li_data.file_id == 1) {
+                $("#conference_info").append(" <a href='php/comments/" + id + li_data.comment + '.pdf' + "'>Document</a>");
+            }
+        }
+
+
+        function send_conference_info(id) {
+            var conference_info = $("#description")[0].value;
+            var file = $("#fileToUpload")[0].files[0];
+
+            var formData = new FormData();
+            formData.append('id_conference', id);
+            formData.append('conference_info', conference_info);
+            formData.append('file', file);
+
+            $.ajax({
+                url: 'php/conference_info.php',
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: formData,
+                statusCode: {
+                    401: function () {
+                        alert("failed");
+                    },
+                    200: function () {
+                        window.location.replace("index.html");
+                    }
+                }
+            });
+
+        }
+
+        function close() {
+            window.location.replace("index.html");
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="index.html">Conferences </a>
+        <a href="create_conference.html">New Conference</a>
+        <a href="login.html" onclick="log_out()">Log out</a>
+    </div>
+    <br>
+    <header class="centerHeader headerColor">
+        <h1>Student Conference
+            <br>
+            <span data-shadow-text="Text-Shadow">We will help you</span>
+            <br> to organize your conferences</h1>
+    </header>
+
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="center tableZIndex">
+            <table id="conferences" class="table">
+                <tr>
+                    <th align="center">Photo</th>
+                    <th align="center">Name</th>
+                    <th align="center">Place</th>
+                    <th align="center">Duration in days</th>
+                    <th align="center">Date</th>
+                    <th align="center">Description</th>
+                    <th align="center"></th>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div class="center" id="conference" hidden>
+            <ul id="conference_info" class="list-group commentCreateConf">
+            </ul>
+            <br>
+            <br>
+            <div id="messageForm" class="form">
+                <div>
+                        <a id="conferenceA" href="#" onclick="window.location.reload(true);">&times;</a>
+                    <label for="description">
+                        <h2>Write your message:</h2>
+                    </label>
+                    <textarea rows="5" id="description"></textarea>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label for="fileToUpload">
+                        <h2>Select pdf file to upload:</h2>
+                    </label>
+                    <br>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <br>
+                    <br>
+                    <button id="conference_info_button" type="button" class="btn btn-primary pull-right">Submit
+                    </button>
+               
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

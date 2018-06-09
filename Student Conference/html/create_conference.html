@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student conference Register</title>
+    <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link href="css/style.css" rel="stylesheet"></link>
+
+    <script type="text/javascript">
+
+        is_authenticated();
+
+        function is_authenticated() {
+            $.ajax({
+                url: 'php/authenticate.php',
+                type: "GET",
+                statusCode: {
+                    401: function () {
+                        window.location.replace("login.html");
+                    }
+                }
+            });
+        }
+
+        function log_out() {
+            $.ajax({
+                url: 'php/logout.php',
+                type: "POST"
+            });
+        }
+
+
+        function create_conf() {
+            var conferenceName = $("#conferenceName")[0].value;
+            var description = $("#description")[0].value;
+            var place = $("#place")[0].value;
+            var time = $("#time")[0].value;
+			var date = $("#date")[0].value;
+			var file = $("#fileToUpload")[0].files[0];
+			
+			console.log(date);
+			   var data = new FormData(); 
+			   data.append('conferenceName', conferenceName);
+			  data.append('description', description); 
+			  data.append('place', place);
+				 data.append('time', time);
+				  data.append('date', date);
+				   data.append('file', file);	
+
+
+            $.ajax({
+                url: './php/create_conference.php',
+                type: "POST",
+				contentType: false,
+				processData: false,
+                data: data,
+                statusCode: {
+                    401: function () {
+                        alert("could not crate conference");
+                        $("#reset").trigger("click");
+                    },
+                    200: function () {
+                        window.location.replace("index.html");
+                    }
+                }
+            });
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div id="mySidenav" class="sidenav">
+    <a href="index.html">Conferences </a>
+            <a href="create_conference.html">New Conference</a>
+       <a href="login.html" onclick="log_out()">Log out</a>
+    </div>
+
+<h1 align="center" class="headerCreateConf">
+    <b>CREATE CONFERENCE</b>
+</h1>
+<div  class="createConf headerCreateConf">
+    <div class="card card-container">
+        <div  class="form-signin">
+            <label for="conferenceName">Conference name:</label>
+            <input type="text" class="form-control" id="conferenceName" value="">
+            <label for="description">Description:</label>
+			<br>
+            <textarea class="textarea" rows="5" id="description"></textarea>
+			<br>
+            <label for="place">Place:</label>
+            <input type="text" id="place" value="">
+            <label for="time">Duration in days:</label>	<br>
+            <input type="number" id="time">	<br> 	<br>
+			<label for="date">Date:</label>	<br>
+            <input type="date" id="date">
+			<br>	<br>
+			<label for="fileToUpload">	Select image to upload:</label>
+			<input type="file" name="fileToUpload" id="fileToUpload">
+					<br>	<br>
+     	       <button type="reset"  class="btn btn-default" id="reset">Reset</button>
+				<button onclick="create_conf()" class="btn btn-default"  >Create</button>
+        </div>
+		     
+    </div>
+</div>
+</body>
+</html>

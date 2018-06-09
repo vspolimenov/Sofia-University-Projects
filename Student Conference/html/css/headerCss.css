@@ -1,0 +1,24 @@
+
+h1 {
+    font: 100 1.5em/1 'Raleway', sans-serif;
+    color:  #26282a;
+   
+    text-transform: uppercase;
+    letter-spacing: .5em;
+}
+
+span, span:after {
+    font-weight: 100;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    letter-spacing: .1em;
+    padding: .2em 0 .25em 0;
+}
+
+span {
+    font-size: 1.5em;
+    z-index: 100;
+    text-shadow: .04em .04em 0 #9cb8b3;
+}
+
